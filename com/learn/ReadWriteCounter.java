@@ -14,6 +14,11 @@ public class ReadWriteCounter {
         writeLock.lock();
         try {
             count++;
+            try {
+               Thread.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("Exception");
+            }
         } finally {
             writeLock.unlock();
         }
