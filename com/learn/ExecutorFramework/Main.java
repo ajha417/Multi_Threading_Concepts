@@ -87,23 +87,31 @@ public class Main {
 
         // invokeAll() method has 2 version. first it takes collections of tasks. second it takes collection of tasks as well as time and unit
         List<Future<Integer>> futureList = null;
+//        try {
+//            futureList = service.invokeAll(taskList, 1, TimeUnit.SECONDS);
+//        } catch (InterruptedException e) {
+//
+//        }
+//
+//        assert futureList != null;
+//        for (Future<Integer> future: futureList) {
+//            try {
+//                System.out.println(future.get());
+//            } catch (CancellationException e) {
+//
+//            }catch (InterruptedException e) {
+//
+//            } catch (ExecutionException e) {
+//
+//            }
+//        }
         try {
-            futureList = service.invokeAll(taskList, 1, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
+        int i = service.invokeAny(taskList);
+            System.out.println(i);
+        } catch (ExecutionException e) {
 
-        }
+        }catch (InterruptedException e) {
 
-        assert futureList != null;
-        for (Future<Integer> future: futureList) {
-            try {
-                System.out.println(future.get());
-            } catch (CancellationException e) {
-
-            }catch (InterruptedException e) {
-
-            } catch (ExecutionException e) {
-
-            }
         }
 
         service.shutdown();
